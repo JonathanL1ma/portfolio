@@ -1,17 +1,14 @@
 const colors = require('./colors');
-const about = require('./about.json');
 
 require('dotenv').config();
-
-const { ACCESS_TOKEN, SPACE_ID, ANALYTICS_ID, DETERMINISTIC } = process.env;
 
 const plugins = [
   'gatsby-plugin-react-helmet',
   {
     resolve: 'gatsby-plugin-manifest',
     options: {
-      name: `${about.name} Portfolio`,
-      short_name: `${about.name} Portfolio`,
+      name: `Jonathan Lima Portfolio`,
+      short_name: `Lima Portfolio`,
       start_url: '/',
       background_color: colors.background,
       theme_color: colors.primary,
@@ -19,37 +16,23 @@ const plugins = [
       icon: 'media/icon.png',
     },
   },
-  'gatsby-plugin-styled-components',
   {
-    resolve: 'gatsby-source-contentful',
+    resolve: 'gatsby-source-graphql',
     options: {
-      spaceId: SPACE_ID,
-      accessToken: ACCESS_TOKEN,
+      typeName: 'GitHub',
+      fieldName: 'github',
+      url: 'https://api.github.com/graphql',
+      headers: {
+        Authorization: `bearer ${process.env.GATSBY_PORTFOLIO_GITHUB_TOKEN}`,
+      },
+      fetchOptions: {},
     },
   },
+  'gatsby-plugin-styled-components',
   'gatsby-transformer-remark',
   'gatsby-plugin-offline',
-  {
-    resolve: 'gatsby-source-medium',
-    options: {
-      username: about.mediumUser || '@medium',
-    },
-  },
 ];
-
-if (ANALYTICS_ID) {
-  plugins.push({
-    resolve: 'gatsby-plugin-google-analytics',
-    options: {
-      trackingId: ANALYTICS_ID,
-    },
-  });
-}
 
 module.exports = {
   plugins,
-  siteMetadata: {
-    isMediumUserDefined: !!about.mediumUser,
-    deterministicBehaviour: !!DETERMINISTIC,
-  },
 };

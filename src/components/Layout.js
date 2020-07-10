@@ -5,7 +5,6 @@ import { ScrollingProvider } from 'react-scroll-section';
 import config from 'react-reveal/globals';
 import preset from '@rebass/preset';
 import colors from '../../colors';
-import Helmet from './Helmet';
 
 const GlobalStyle = createGlobalStyle`
   *,
@@ -55,7 +54,6 @@ const Layout = ({ children }) => {
       <ThemeProvider theme={theme}>
         <GlobalStyle />
         <ScrollingProvider>
-          <Helmet />
           {children}
         </ScrollingProvider>
       </ThemeProvider>
