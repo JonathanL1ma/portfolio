@@ -1,9 +1,9 @@
 import React from 'react';
-import { Box, Flex } from 'rebass/styled-components';
+import { Flex } from 'rebass/styled-components';
+import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import Triangle from '../components/Triangle';
-
 
 const Background = () => (
   <div>
@@ -29,32 +29,50 @@ const Background = () => (
   </div>
 );
 
-// const ProfilePicture = styled(Image)`
-//   border-radius: 50%;
-//   transition: all 0.25s ease-out;
+const AboutMediaQuery = styled.div`
+  display: flex;
 
-//   &:hover {
-//     border-radius: 20%;
-//   }
-// `;
+  @media (max-width: 1460px) {
+    flex-direction: column;
+    align-items: center;
+  }
+`;
+
+const TextMediaQuery = styled.div`
+  font-size: 2.5em;
+  width: 70%;
+  margin-right: 72px;
+
+  @media (max-width: 1460px) {
+    margin-right: 0px;
+    text-align: justify;
+  }
+
+  @media (max-width: 720px) {
+    font-size: 2em;
+    margin-right: 0px;
+    text-align: justify;
+  }
+
+  @media (max-width: 520px) {
+    font-size: 1.5em;
+    margin-right: 0px;
+    text-align: justify;
+  }
+`;
 
 const About = () => (
   <Section.Container id="about" Background={Background}>
     <Section.Header name="About me" icon="🙋‍♂️" label="person" />
-    <Flex justifyContent="center" alignItems="center" flexWrap="wrap">
-      <Box
-        width={[1, 1, 2 / 6]}
-        style={{ maxWidth: '300px', margin: 'auto' }}
-      >
-        <Fade right>
-          {/* <ProfilePicture
-                  src={profile.image.src}
-                  alt={profile.title}
-                  mt={[4, 4, 0]}
-                  ml={[0, 0, 1]}
-                /> */}
-        </Fade>
-      </Box>
+    <Flex justifyContent="flex-start" alignItems="center" flexWrap="wrap">
+      <Fade bottom>
+        <AboutMediaQuery>
+          <TextMediaQuery>
+            <p>Soy una persona autodidacta que le gusta crear aplicaciones multiplataforma con las tecnologías más recientes del mercado 🚀. Me enfoco en el desarrollo con React para el ámbito web y para mobile utilizo Flutter. Desarrollar aplicaciones es uno de mis hobbies principales junto a jugar videojuegos 🎲. Me considero una persona muy activa, alegre, dedicada, responsable y trabajadora.</p>
+          </TextMediaQuery>
+          <img src='me.jpg' alt='Me' style={{ width: '50%', height: '70%', borderRadius: '24px', overflow: 'hidden', objectFit: 'cover' }} />
+        </AboutMediaQuery>
+      </Fade>
     </Flex>
   </Section.Container>
 );

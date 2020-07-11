@@ -1,13 +1,14 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { Text, Flex, Box } from 'rebass/styled-components';
+import { Text } from 'rebass/styled-components';
 import { useStaticQuery, graphql } from 'gatsby';
 import styled from 'styled-components';
 import Fade from 'react-reveal/Fade';
 import Section from '../components/Section';
 import { CardContainer, Card } from '../components/Card';
-import SocialLink from '../components/SocialLink';
 import Triangle from '../components/Triangle';
+import Fork from '../components/Icons/Fork';
+import Star from '../components/Icons/Star';
 
 const Background = () => (
   <div>
@@ -66,27 +67,6 @@ const TextContainer = styled.div`
   }
 `;
 
-const ImageContainer = styled.div`
-  margin: auto;
-  width: ${CARD_HEIGHT};
-
-  ${MEDIA_QUERY_SMALL} {
-    width: calc(${CARD_HEIGHT} / 2);
-  }
-`;
-
-const ProjectTag = styled.div`
-  position: relative;
-  height: ${CARD_HEIGHT};
-  top: calc(
-    -${CARD_HEIGHT} - 3.5px
-  ); /*don't know why I have to add 3.5px here ... */
-
-  ${MEDIA_QUERY_SMALL} {
-    top: calc(-${CARD_HEIGHT} - 3.5px + (${CARD_HEIGHT} / 4));
-  }
-`;
-
 const Project = ({
   url,
   name,
@@ -94,38 +74,28 @@ const Project = ({
   stargazers,
   forkCount
 }) => (
-    <Card p={0}>
-      <Flex style={{ height: CARD_HEIGHT }}>
-        <TextContainer>
-          <span>
-            <Title my={2} pb={1} color="text">
-              {name}
-            </Title>
-          </span>
-          <Text width={[1]} style={{ overflow: 'auto' }} color="text">
-            {description}
-          </Text>
-        </TextContainer>
-
-        <ImageContainer>
-          <ProjectTag>
-            <Flex
-              style={{
-                float: 'right',
-              }}
-            >
-              <Box mx={1} fontSize={5}>
-                <SocialLink
-                  name="Check repository"
-                  fontAwesomeIcon="github"
-                  url={url}
-                />
-              </Box>
-            </Flex>
-          </ProjectTag>
-        </ImageContainer>
-      </Flex>
-    </Card>
+    <a href={url} style={{ 'textDecoration': 'none' }} target="_blank">
+      <Card p={0}>
+        <span>
+          <Title my={2} pb={1} color="text">
+            {name}
+          </Title>
+        </span>
+        <Text width={[1]} style={{ overflow: 'auto' }} color="text">
+          {description}
+        </Text>
+        <div style={{ display: 'flex', marginTop: '16px', color: 'black' }}>
+          <div>
+            <Star />
+            <span style={{ marginLeft: '4px' }}>{stargazers.totalCount}</span>
+          </div>
+          <div style={{ marginLeft: '8px' }}>
+            <Fork />
+            <span style={{ marginLeft: '4px' }}>{forkCount}</span>
+          </div>
+        </div>
+      </Card>
+    </a>
   );
 
 Project.propTypes = {
@@ -177,9 +147,11 @@ const Projects = () => {
       <Section.Header name="Projects" icon="💻" label="notebook" />
       <CardContainer minWidth="350px">
         {edges.map(({ node }, i) => (
-          <Fade bottom delay={i * 200} key={node.id}>
-            <Project {...node} />
-          </Fade>
+          <div style={{ width: '100%' }}>
+            <Fade bottom delay={i * 200} key={node.id}>
+              <Project {...node} />
+            </Fade>
+          </div>
         ))}
       </CardContainer>
     </Section.Container>

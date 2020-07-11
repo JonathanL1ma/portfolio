@@ -7,9 +7,9 @@ export const CardContainer = styled.div`
 
   grid-template-columns: repeat(
     auto-fill,
-    minmax(${(props) => props.minWidth}, 1fr)
+    minmax(400px, 1fr)
   );
-  justify-items: center;
+  justify-items: flex-start;
 
   @media only screen and (max-width: 400px) {
     grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -20,12 +20,10 @@ export const Card = styled(CardRebass).attrs({
   bg: 'white',
   boxShadow: 0,
 })`
-  position: relative;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.2);
   transition: all 0.25s;
-  top: 0;
-  height: 100%;
   border-radius: 8px;
+  padding: 16px;
 
   &:hover {
     top: -10px;
