@@ -4,13 +4,15 @@ import Landing from '../sections/Landing';
 import About from '../sections/About';
 import Projects from '../sections/Projects';
 import Header from '../components/Header';
+import { Helmet } from 'react-helmet';
 
 const IndexPage = () => (
   <Layout>
-    <Header />
-    <Landing />
-    <About />
-    <Projects />
+      <Helmet title="Jonathan Lima | Portfolio" />
+      <Header />
+      <Landing />
+      <About />
+      <Projects />
   </Layout>
 );
 
