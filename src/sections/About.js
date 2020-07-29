@@ -70,7 +70,7 @@ const About = () => (
           <TextMediaQuery>
             <p>Soy una persona autodidacta que le gusta crear aplicaciones multiplataforma con las tecnologías más recientes del mercado 🚀. Me enfoco en el desarrollo con React para el ámbito web y para mobile utilizo Flutter. Desarrollar aplicaciones es uno de mis hobbies principales junto a jugar videojuegos 🎲. Me considero una persona muy activa, alegre, dedicada, responsable y trabajadora.</p>
           </TextMediaQuery>
-          <img src='../components/Logo/me.svg' alt='Me' style={{ width: '50%', height: '70%', borderRadius: '24px', overflow: 'hidden', objectFit: 'cover' }} />
+          <img src='me.svg' alt='Me' style={{ width: '50%', height: '70%', borderRadius: '24px', overflow: 'hidden', objectFit: 'cover' }} />
         </AboutMediaQuery>
       </Fade>
     </Flex>
